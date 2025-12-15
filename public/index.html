@@ -1,0 +1,91 @@
+<!-- ============================================================================
+     FICHIER index.html - Point d'entrée HTML de l'application React
+     ============================================================================
+     Ce fichier est le seul fichier HTML de l'application (Single Page Application)
+     React va injecter tout le contenu JavaScript dans la div avec id="root"
+     ============================================================================ -->
+
+<!-- Déclaration du type de document : HTML5 -->
+<!-- Indique au navigateur qu'il s'agit d'une page HTML moderne -->
+<!DOCTYPE html>
+
+<!-- Balise HTML racine avec attribut lang="fr" pour la langue française -->
+<!-- Aide les moteurs de recherche et les lecteurs d'écran à comprendre la langue -->
+<html lang="fr">
+  
+  <!-- ========================================================================
+       HEAD - Métadonnées et configuration de la page
+       ======================================================================== -->
+  <head>
+    
+    <!-- Encodage des caractères : UTF-8 supporte tous les caractères internationaux -->
+    <!-- Permet d'afficher correctement les emojis, accents, caractères spéciaux -->
+    <meta charset="utf-8" />
+    
+    <!-- Définir l'icône qui apparaît dans l'onglet du navigateur (favicon) -->
+    <!-- %PUBLIC_URL% : variable remplacée par l'URL du dossier public lors du build -->
+    <!-- favicon.ico : fichier d'icône au format .ico (16x16 ou 32x32 pixels) -->
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    
+    <!-- Configuration du viewport pour le responsive design (adaptabilité mobile) -->
+    <!-- width=device-width : la largeur = largeur de l'appareil -->
+    <!-- initial-scale=1 : zoom initial à 100% (pas de zoom par défaut) -->
+    <!-- Essentiel pour que le site s'affiche correctement sur mobile -->
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+    <!-- Couleur du thème pour les navigateurs mobiles (Android Chrome) -->
+    <!-- Définit la couleur de la barre d'adresse sur certains navigateurs mobiles -->
+    <!-- #000000 : noir (peut être changé selon votre charte graphique) -->
+    <meta name="theme-color" content="#000000" />
+    
+    <!-- Description de la page pour les moteurs de recherche (SEO) -->
+    <!-- Apparaît dans les résultats Google sous le titre de la page -->
+    <!-- Important pour le référencement naturel -->
+    <meta
+      name="description"
+      content="Jeu Memory créé avec React"
+    />
+    
+    <!-- Icône pour les appareils Apple (iPhone, iPad) quand on ajoute le site à l'écran d'accueil -->
+    <!-- logo192.png : image PNG de 192x192 pixels -->
+    <!-- Permet d'avoir une belle icône si l'utilisateur épingle votre site -->
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    
+    <!-- Lien vers le fichier manifest.json pour Progressive Web App (PWA) -->
+    <!-- manifest.json : fichier de configuration pour transformer le site en PWA -->
+    <!-- Permet d'installer l'app sur mobile comme une vraie application -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    
+    <!-- Titre de la page qui apparaît dans l'onglet du navigateur -->
+    <!-- Important pour le SEO et l'expérience utilisateur -->
+    <title>Memory Game</title>
+    
+  </head>
+  
+  <!-- ========================================================================
+       BODY - Corps de la page (contenu visible)
+       ======================================================================== -->
+  <body>
+    
+    <!-- Message affiché si JavaScript est désactivé dans le navigateur -->
+    <!-- <noscript> : balise qui n'affiche son contenu que si JS est désactivé -->
+    <!-- React nécessite JavaScript pour fonctionner, donc on avertit l'utilisateur -->
+    <noscript>Vous devez activer JavaScript pour exécuter cette application.</noscript>
+    
+    <!-- DIV PRINCIPALE : C'est ICI que React va injecter toute l'application -->
+    <!-- id="root" : identifiant unique utilisé par React (voir src/index.js) -->
+    <!-- React va remplacer le contenu vide de cette div par tous nos composants -->
+    <!-- Cette div est ciblée par : ReactDOM.createRoot(document.getElementById('root')) -->
+    <div id="root"></div>
+    
+    <!-- ========================================================================
+         À NOTER : Aucun script n'est visible ici !
+         ========================================================================
+         Les fichiers JavaScript (React, nos composants, etc.) sont automatiquement
+         injectés par le build system de Create React App lors du développement
+         ou de la compilation. Ils apparaîtront sous forme de balises <script>
+         dans le code source final généré par npm start ou npm run build.
+         ======================================================================== -->
+    
+  </body>
+</html>

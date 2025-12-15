@@ -1,0 +1,200 @@
+/* ============================================================================
+   STYLES DU COMPOSANT BUTTON - Bouton réutilisable et moderne
+   ============================================================================
+   Ce fichier contient tous les styles du bouton avec animations et responsive
+   ============================================================================ */
+
+/* ============================================================================
+   ÉTAT NORMAL DU BOUTON (.btn)
+   ============================================================================ */
+.btn {
+  /* ESPACEMENT INTERNE (padding) */
+  /* Format : padding: haut/bas gauche/droite */
+  /* 12px : espace vertical (haut et bas) */
+  /* 30px : espace horizontal (gauche et droite) */
+  /* Rend le bouton confortable à cliquer */
+  padding: 12px 30px;
+  
+  /* TAILLE DU TEXTE */
+  /* 1.1rem : taille relative (1rem = taille de base, généralement 16px) */
+  /* 1.1rem = 1.1 × 16px = 17.6px environ */
+  /* rem (root em) : taille relative à la racine du document */
+  font-size: 1.1rem;
+  
+  /* ÉPAISSEUR DE LA POLICE */
+  /* bold : texte en gras (équivalent à font-weight: 700) */
+  /* Rend le texte plus visible et impactant */
+  font-weight: bold;
+  
+  /* COULEUR DU TEXTE */
+  /* #ffffff : code hexadécimal pour blanc */
+  /* Format : #RRGGBB (RR=rouge, GG=vert, BB=bleu) */
+  /* ffffff = maximum de rouge + vert + bleu = blanc */
+  color: #ffffff;
+  
+  /* ARRIÈRE-PLAN DÉGRADÉ (gradient) */
+  /* linear-gradient : dégradé linéaire de couleur */
+  /* 135deg : angle du dégradé (135° = diagonale de haut-gauche à bas-droite) */
+  /* #f093fb 0% : couleur rose clair au début (0%) */
+  /* #f5576c 100% : couleur rose foncé à la fin (100%) */
+  /* Crée un effet visuel moderne et attractif */
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  
+  /* BORDURE */
+  /* none : pas de bordure visible */
+  /* Enlève la bordure par défaut des boutons HTML */
+  border: none;
+  
+  /* COINS ARRONDIS */
+  /* 25px : rayon de courbure des coins */
+  /* Plus la valeur est élevée, plus les coins sont arrondis */
+  /* 25px crée un bouton avec des coins très arrondis (effet "pilule") */
+  border-radius: 25px;
+  
+  /* CURSEUR DE LA SOURIS */
+  /* pointer : la main avec le doigt pointé (indique un élément cliquable) */
+  /* Change le curseur au survol pour montrer que c'est interactif */
+  cursor: pointer;
+  
+  /* TRANSITION (animation fluide) */
+  /* all : anime TOUTES les propriétés qui changent */
+  /* 0.3s : durée de l'animation (0.3 seconde = 300 millisecondes) */
+  /* ease : courbe d'accélération (lent au début, rapide au milieu, lent à la fin) */
+  /* Rend les changements (hover, active) fluides et agréables */
+  transition: all 0.3s ease;
+  
+  /* OMBRE PORTÉE (box-shadow) */
+  /* Format : décalage-X décalage-Y flou étendue couleur */
+  /* 0 : pas de décalage horizontal */
+  /* 4px : décalage vertical vers le bas (ombre en dessous) */
+  /* 15px : flou de l'ombre (plus c'est élevé, plus c'est diffus) */
+  /* rgba(0, 0, 0, 0.2) : noir avec 20% d'opacité (transparence) */
+  /* Donne de la profondeur au bouton (effet 3D) */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  
+  /* TRANSFORMATION DU TEXTE */
+  /* uppercase : convertit tout le texte en majuscules */
+  /* "Nouvelle Partie" devient "NOUVELLE PARTIE" */
+  /* Donne un aspect plus impactant et moderne */
+  text-transform: uppercase;
+  
+  /* ESPACEMENT ENTRE LES LETTRES */
+  /* 1px : ajoute 1 pixel d'espace entre chaque lettre */
+  /* Améliore la lisibilité du texte en majuscules */
+  /* Donne un aspect plus aéré et élégant */
+  letter-spacing: 1px;
+  
+  /* MARGE EXTERNE */
+  /* 10px : espace autour du bouton (tous les côtés) */
+  /* Crée de l'espace avec les autres éléments */
+  margin: 10px;
+}
+
+/* ============================================================================
+   ÉTAT SURVOL (:hover) - Quand la souris passe sur le bouton
+   ============================================================================ */
+.btn:hover {
+  /* TRANSFORMATION - Déplacement vertical */
+  /* translateY : déplace l'élément sur l'axe vertical (Y) */
+  /* -2px : déplace de 2 pixels vers le HAUT (négatif = vers le haut) */
+  /* Crée un effet de "soulèvement" du bouton */
+  transform: translateY(-2px);
+  
+  /* OMBRE PORTÉE PLUS PRONONCÉE */
+  /* 0 : pas de décalage horizontal */
+  /* 6px : décalage vertical plus important (était 4px) */
+  /* 20px : flou plus important (était 15px) */
+  /* rgba(0, 0, 0, 0.3) : noir avec 30% d'opacité (plus sombre qu'avant : 20%) */
+  /* L'ombre plus grande renforce l'effet de soulèvement */
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+  
+  /* DÉGRADÉ INVERSÉ */
+  /* Les couleurs sont inversées par rapport à l'état normal */
+  /* #f5576c 0% : rose foncé au début (était à la fin) */
+  /* #f093fb 100% : rose clair à la fin (était au début) */
+  /* Crée un effet de changement de couleur au survol */
+  background: linear-gradient(135deg, #f5576c 0%, #f093fb 100%);
+}
+
+/* ============================================================================
+   ÉTAT ACTIF (:active) - Quand on clique sur le bouton
+   ============================================================================ */
+.btn:active {
+  /* RÉINITIALISATION DU DÉPLACEMENT */
+  /* translateY(0) : remet le bouton à sa position d'origine */
+  /* Annule le déplacement de -2px de l'état hover */
+  /* Crée un effet de "pression" quand on clique */
+  transform: translateY(0);
+  
+  /* OMBRE RÉDUITE */
+  /* 0 : pas de décalage horizontal */
+  /* 2px : décalage vertical très faible (était 6px en hover) */
+  /* 10px : flou réduit (était 20px en hover) */
+  /* Simule le bouton qui s'enfonce dans l'interface */
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================================================
+   ÉTAT DÉSACTIVÉ (:disabled) - Quand le bouton est désactivé
+   ============================================================================ */
+.btn:disabled {
+  /* OPACITÉ (transparence) */
+  /* 0.6 : 60% d'opacité (40% transparent) */
+  /* Valeurs : 0 = invisible, 1 = complètement opaque */
+  /* Rend le bouton visuellement "grisé" */
+  opacity: 0.6;
+  
+  /* CURSEUR NON AUTORISÉ */
+  /* not-allowed : symbole d'interdiction (cercle barré) */
+  /* Indique visuellement que le bouton n'est pas cliquable */
+  cursor: not-allowed;
+  
+  /* DÉSACTIVATION DES TRANSFORMATIONS */
+  /* none : annule toutes les transformations (translateY, etc.) */
+  /* Le bouton désactivé ne "bouge" pas au survol ou au clic */
+  transform: none;
+}
+
+/* ============================================================================
+   RESPONSIVE - Adaptation pour écrans mobiles
+   ============================================================================ */
+/* @media : règle CSS conditionnelle (media query) */
+/* max-width: 768px : s'applique si la largeur de l'écran ≤ 768 pixels */
+/* 768px : seuil typique pour les tablettes et téléphones en mode portrait */
+/* Les styles à l'intérieur remplacent les styles par défaut sur petit écran */
+@media (max-width: 768px) {
+  .btn {
+    /* PADDING RÉDUIT pour mobile */
+    /* 10px vertical (au lieu de 12px) */
+    /* 20px horizontal (au lieu de 30px) */
+    /* Économise de l'espace sur petit écran */
+    padding: 10px 20px;
+    
+    /* TAILLE DE TEXTE RÉDUITE */
+    /* 1rem : taille de base (environ 16px) */
+    /* Au lieu de 1.1rem sur grand écran */
+    /* Évite que le texte soit trop gros sur mobile */
+    font-size: 1rem;
+  }
+}
+
+/* ============================================================================
+   RÉSUMÉ DES ÉTATS DU BOUTON
+   ============================================================================
+   
+   État normal (.btn) :
+   - Gradient rose, ombre moyenne, position normale
+   
+   État hover (.btn:hover) :
+   - Monte de 2px, ombre plus forte, gradient inversé
+   
+   État active (.btn:active) :
+   - Revient à la position normale, ombre réduite (effet "enfoncé")
+   
+   État disabled (.btn:disabled) :
+   - Opacité réduite, curseur interdit, pas d'interaction
+   
+   Sur mobile (@media) :
+   - Bouton plus petit (padding et font-size réduits)
+   
+   ============================================================================ */

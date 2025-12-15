@@ -1,0 +1,161 @@
+/* ============================================================================
+   STYLES DU COMPOSANT TITLE - Titre principal avec animation d'apparition
+   ============================================================================
+   Ce fichier style le titre "MEMORY GAME" avec un effet d'entrée animé
+   ============================================================================ */
+
+/* ============================================================================
+   STYLE DU TITRE (.title)
+   ============================================================================ */
+.title {
+  /* TAILLE DE LA POLICE */
+  /* 3rem : taille relative (3 × 16px = 48px environ) */
+  /* rem (root em) : unité relative à la taille de police racine */
+  /* Grande taille pour que le titre soit bien visible et impactant */
+  font-size: 3rem;
+  
+  /* COULEUR DU TEXTE */
+  /* #ffffff : code hexadécimal pour blanc */
+  /* Format : #RRGGBB (RR=rouge, GG=vert, BB=bleu) */
+  /* ffffff = maximum de chaque couleur = blanc pur */
+  /* Contraste bien avec le fond violet de l'application */
+  color: #ffffff;
+  
+  /* OMBRE DU TEXTE (text-shadow) */
+  /* Format : décalage-X décalage-Y flou couleur */
+  /* 2px : décalage horizontal vers la droite */
+  /* 2px : décalage vertical vers le bas */
+  /* 4px : rayon de flou de l'ombre (plus c'est élevé, plus c'est diffus) */
+  /* rgba(0, 0, 0, 0.3) : noir (0,0,0) avec 30% d'opacité (0.3) */
+  /* Crée un effet de profondeur et améliore la lisibilité */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  
+  /* MARGE INFÉRIEURE */
+  /* 30px : espace entre le titre et l'élément suivant (les statistiques) */
+  /* Crée une séparation visuelle claire */
+  /* margin-bottom : ajoute de l'espace uniquement en bas */
+  margin-bottom: 30px;
+  
+  /* ÉPAISSEUR DE LA POLICE */
+  /* bold : texte en gras (équivalent à font-weight: 700) */
+  /* Valeurs possibles : normal (400), bold (700), ou nombres de 100 à 900 */
+  /* Rend le titre plus visible et impactant */
+  font-weight: bold;
+  
+  /* TRANSFORMATION DU TEXTE */
+  /* uppercase : convertit tout le texte en MAJUSCULES */
+  /* "Memory Game" devient "MEMORY GAME" */
+  /* Donne un aspect plus solennel et professionnel */
+  text-transform: uppercase;
+  
+  /* ESPACEMENT ENTRE LES LETTRES */
+  /* 3px : ajoute 3 pixels d'espace entre chaque lettre */
+  /* Améliore la lisibilité et donne un aspect plus aéré et élégant */
+  /* Particulièrement efficace avec les textes en majuscules */
+  letter-spacing: 3px;
+  
+  /* ANIMATION D'APPARITION */
+  /* animation : nom durée courbe-de-vitesse */
+  /* fadeInDown : nom de l'animation (définie par @keyframes plus bas) */
+  /* 0.8s : durée de l'animation (0.8 seconde = 800 millisecondes) */
+  /* ease-in-out : courbe d'accélération (lent au début, rapide au milieu, lent à la fin) */
+  /* L'animation se joue automatiquement au chargement de la page */
+  animation: fadeInDown 0.8s ease-in-out;
+}
+
+/* ============================================================================
+   DÉFINITION DE L'ANIMATION fadeInDown
+   ============================================================================ */
+/* @keyframes : définit une animation personnalisée réutilisable */
+/* fadeInDown : nom de l'animation (peut être n'importe quel nom) */
+/* Cette animation fait apparaître le titre en descendant doucement */
+@keyframes fadeInDown {
+  /* ÉTAT DE DÉPART (from) */
+  /* État initial de l'animation (au moment 0%) */
+  from {
+    /* OPACITÉ INITIALE */
+    /* opacity: 0 : complètement invisible/transparent */
+    /* Valeurs : 0 = invisible, 1 = complètement opaque */
+    /* Le titre commence invisible */
+    opacity: 0;
+    
+    /* POSITION INITIALE */
+    /* translateY : déplacement sur l'axe vertical (Y) */
+    /* -30px : 30 pixels vers le HAUT (négatif = vers le haut) */
+    /* Le titre commence au-dessus de sa position finale */
+    transform: translateY(-30px);
+  }
+  
+  /* ÉTAT FINAL (to) */
+  /* État final de l'animation (au moment 100%) */
+  to {
+    /* OPACITÉ FINALE */
+    /* opacity: 1 : complètement visible/opaque */
+    /* Le titre devient totalement visible */
+    opacity: 1;
+    
+    /* POSITION FINALE */
+    /* translateY(0) : position normale (pas de déplacement) */
+    /* Le titre arrive à sa position définitive */
+    /* L'animation crée un mouvement fluide de haut en bas */
+    transform: translateY(0);
+  }
+}
+
+/* ============================================================================
+   RÉSUMÉ DE L'ANIMATION fadeInDown
+   ============================================================================
+   
+   Au chargement de la page :
+   1. Le titre est invisible (opacity: 0) et 30px au-dessus (translateY(-30px))
+   2. Pendant 0.8 seconde, il descend progressivement vers sa position normale
+   3. En même temps, il devient progressivement visible (opacity passe de 0 à 1)
+   4. À la fin : titre visible (opacity: 1) à sa position normale (translateY(0))
+   
+   Effet visuel : le titre "tombe doucement" en apparaissant progressivement
+   ============================================================================ */
+
+/* ============================================================================
+   RESPONSIVE - Adaptation pour écrans mobiles
+   ============================================================================ */
+/* @media : règle CSS conditionnelle (media query) */
+/* max-width: 768px : s'applique si la largeur de l'écran ≤ 768 pixels */
+/* 768px : seuil typique pour tablettes et smartphones en mode portrait */
+@media (max-width: 768px) {
+  .title {
+    /* TAILLE DE POLICE RÉDUITE POUR MOBILE */
+    /* 2rem : au lieu de 3rem sur grand écran */
+    /* 2rem = 2 × 16px = 32px environ (au lieu de 48px) */
+    /* Évite que le titre soit trop grand sur petit écran */
+    /* Permet au titre de tenir confortablement sur une ligne */
+    font-size: 2rem;
+  }
+  
+  /* NOTE : Les autres propriétés (color, text-shadow, etc.) restent inchangées */
+  /* Seule la taille de police est adaptée pour mobile */
+}
+
+/* ============================================================================
+   RÉSUMÉ DES STYLES DU TITRE
+   ============================================================================
+   
+   APPARENCE :
+   - Texte blanc (color: #ffffff)
+   - Grande taille : 3rem (48px) sur desktop, 2rem (32px) sur mobile
+   - En gras (font-weight: bold)
+   - En majuscules (text-transform: uppercase)
+   - Espacement entre lettres : 3px
+   - Ombre pour la profondeur (text-shadow)
+   
+   ESPACEMENT :
+   - Marge en bas de 30px (sépare du contenu suivant)
+   
+   ANIMATION :
+   - Apparition progressive en descendant (fadeInDown)
+   - Durée : 0.8 seconde
+   - Effet : descente de 30px + passage de invisible à visible
+   
+   RESPONSIVE :
+   - Sur mobile : taille réduite à 2rem
+   
+   ============================================================================ */

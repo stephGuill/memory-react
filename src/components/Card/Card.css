@@ -1,0 +1,288 @@
+/* ============================================================================
+   STYLES DU COMPOSANT CARD - Carte avec animation de retournement 3D
+   ============================================================================
+   Ce fichier crée l'effet "flip" (retournement) des cartes du jeu Memory
+   Utilise les transformations 3D CSS pour une animation réaliste
+   ============================================================================ */
+
+/* ============================================================================
+   CONTENEUR EXTERNE DE LA CARTE (.card)
+   ============================================================================ */
+.card {
+  /* LARGEUR DE LA CARTE */
+  /* 100px : largeur fixe de la carte */
+  /* Définit la taille du carré cliquable */
+  width: 100px;
+  
+  /* HAUTEUR DE LA CARTE */
+  /* 100px : hauteur fixe (même que la largeur pour un carré parfait) */
+  /* Crée une carte carrée de 100x100 pixels */
+  height: 100px;
+  
+  /* CURSEUR AU SURVOL */
+  /* pointer : main avec doigt pointé */
+  /* Indique que la carte est cliquable */
+  cursor: pointer;
+  
+  /* PERSPECTIVE 3D */
+  /* 1000px : distance de l'observateur par rapport à l'élément */
+  /* Plus la valeur est grande, moins l'effet 3D est prononcé */
+  /* Plus la valeur est petite, plus l'effet 3D est visible */
+  /* Essentiel pour créer l'illusion de profondeur lors du retournement */
+  /* Sans cette propriété, le retournement serait plat (2D) */
+  perspective: 1000px;
+}
+
+/* ============================================================================
+   CONTENEUR INTERNE - Élément qui pivote (.card-inner)
+   ============================================================================ */
+.card-inner {
+  /* POSITIONNEMENT RELATIF */
+  /* relative : positionne l'élément par rapport à sa position normale */
+  /* Permet aux enfants (card-front, card-back) d'utiliser position: absolute */
+  /* Crée un contexte de positionnement pour les faces de la carte */
+  position: relative;
+  
+  /* LARGEUR COMPLÈTE */
+  /* 100% : prend toute la largeur du parent (.card = 100px) */
+  width: 100%;
+  
+  /* HAUTEUR COMPLÈTE */
+  /* 100% : prend toute la hauteur du parent (.card = 100px) */
+  height: 100%;
+  
+  /* ANIMATION DE TRANSFORMATION */
+  /* transform : anime les changements de transformation (rotation, etc.) */
+  /* 0.6s : durée de l'animation (0.6 seconde = 600 millisecondes) */
+  /* Rend le retournement de la carte fluide et agréable */
+  transition: transform 0.6s;
+  
+  /* STYLE DE TRANSFORMATION 3D */
+  /* preserve-3d : préserve l'espace 3D pour les éléments enfants */
+  /* Permet aux faces avant et arrière de se positionner dans l'espace 3D */
+  /* CRUCIAL pour l'effet flip : sans cela, les faces seraient plates */
+  transform-style: preserve-3d;
+}
+
+/* ============================================================================
+   ÉTAT RETOURNÉ DE LA CARTE (.card-inner.flipped)
+   ============================================================================ */
+/* Cette classe est ajoutée dynamiquement par JavaScript quand on clique */
+.card-inner.flipped {
+  /* ROTATION 3D SUR L'AXE Y */
+  /* rotateY : rotation autour de l'axe vertical (Y) */
+  /* 180deg : rotation de 180 degrés (demi-tour complet) */
+  /* Fait pivoter la carte pour montrer la face arrière */
+  /* L'animation prend 0.6s grâce au transition défini dans .card-inner */
+  transform: rotateY(180deg);
+}
+
+/* ============================================================================
+   STYLES COMMUNS AUX DEUX FACES (.card-front et .card-back)
+   ============================================================================ */
+/* Sélecteur multiple : applique les mêmes styles aux deux classes */
+.card-front,
+.card-back {
+  /* POSITIONNEMENT ABSOLU */
+  /* absolute : positionne l'élément par rapport à son parent relatif (.card-inner) */
+  /* Permet de superposer les deux faces au même endroit */
+  /* Les deux faces occupent exactement le même espace */
+  position: absolute;
+  
+  /* LARGEUR COMPLÈTE */
+  /* 100% : prend toute la largeur du parent (100px) */
+  width: 100%;
+  
+  /* HAUTEUR COMPLÈTE */
+  /* 100% : prend toute la hauteur du parent (100px) */
+  height: 100%;
+  
+  /* MASQUAGE DE LA FACE ARRIÈRE */
+  /* hidden : cache la face quand elle est tournée vers l'arrière */
+  /* ESSENTIEL pour l'effet flip : empêche de voir la face arrière à l'envers */
+  /* Quand card-front est visible, card-back est cachée, et vice-versa */
+  backface-visibility: hidden;
+  
+  /* DISPOSITION EN FLEXBOX */
+  /* flex : active le modèle de disposition flexible */
+  /* Permet de centrer facilement le contenu (? ou emoji) */
+  display: flex;
+  
+  /* ALIGNEMENT VERTICAL */
+  /* center : centre le contenu verticalement */
+  /* Aligne l'emoji ou le ? au centre de la carte */
+  align-items: center;
+  
+  /* ALIGNEMENT HORIZONTAL */
+  /* center : centre le contenu horizontalement */
+  /* Combine avec align-items pour un centrage parfait */
+  justify-content: center;
+  
+  /* COINS ARRONDIS */
+  /* 10px : rayon de courbure des coins */
+  /* Donne un aspect moderne et doux à la carte */
+  border-radius: 10px;
+  
+  /* OMBRE PORTÉE */
+  /* Format : décalage-X décalage-Y flou couleur */
+  /* 0 : pas de décalage horizontal */
+  /* 4px : décalage vertical (ombre en dessous) */
+  /* 8px : flou de l'ombre */
+  /* rgba(0, 0, 0, 0.2) : noir avec 20% d'opacité */
+  /* Donne de la profondeur aux cartes */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  
+  /* TAILLE DE LA POLICE */
+  /* 2rem : taille relative (2 × 16px = 32px environ) */
+  /* Taille par défaut pour le contenu de la carte */
+  font-size: 2rem;
+}
+
+/* ============================================================================
+   FACE AVANT - Cachée par défaut (.card-front)
+   ============================================================================ */
+/* Cette face montre le "?" quand la carte n'est pas retournée */
+.card-front {
+  /* ARRIÈRE-PLAN DÉGRADÉ */
+  /* linear-gradient : dégradé linéaire */
+  /* 135deg : angle diagonal (haut-gauche vers bas-droite) */
+  /* #667eea : bleu-violet clair au début */
+  /* #764ba2 : violet foncé à la fin */
+  /* Couleurs différentes de la face arrière pour mieux distinguer */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  
+  /* COULEUR DU TEXTE */
+  /* white : blanc (pour contraster avec le fond violet) */
+  color: white;
+}
+
+/* ============================================================================
+   ICÔNE DE LA FACE AVANT (?) (.card-icon)
+   ============================================================================ */
+.card-icon {
+  /* TAILLE DU POINT D'INTERROGATION */
+  /* 3rem : taille relative (3 × 16px = 48px environ) */
+  /* Plus grand que font-size de base (2rem) pour être bien visible */
+  font-size: 3rem;
+  
+  /* ÉPAISSEUR DE LA POLICE */
+  /* bold : texte en gras */
+  /* Rend le ? plus visible et impactant */
+  font-weight: bold;
+}
+
+/* ============================================================================
+   FACE ARRIÈRE - Révèle l'emoji (.card-back)
+   ============================================================================ */
+/* Cette face montre l'emoji quand la carte est retournée */
+.card-back {
+  /* ARRIÈRE-PLAN DÉGRADÉ */
+  /* linear-gradient : dégradé linéaire */
+  /* 135deg : même angle que la face avant */
+  /* #f093fb : rose clair au début */
+  /* #f5576c : rose foncé à la fin */
+  /* Couleurs différentes de la face avant (violet vs rose) */
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  
+  /* COULEUR DU TEXTE */
+  /* white : blanc (pour contraster avec le fond rose) */
+  color: white;
+  
+  /* ROTATION INITIALE DE LA FACE ARRIÈRE */
+  /* rotateY(180deg) : tourne la face arrière de 180° dès le départ */
+  /* CRUCIAL : positionne la face arrière "à l'envers" initialement */
+  /* Quand .card-inner.flipped ajoute 180°, cette face revient à 0° (visible) */
+  /* Logique : face-avant = 0°, face-arrière = 180° (cachée derrière) */
+  transform: rotateY(180deg);
+}
+
+/* ============================================================================
+   VALEUR DE LA CARTE (emoji) (.card-value)
+   ============================================================================ */
+.card-value {
+  /* TAILLE DE L'EMOJI */
+  /* 3rem : taille relative (3 × 16px = 48px environ) */
+  /* Même taille que le ? pour cohérence visuelle */
+  font-size: 3rem;
+}
+
+/* ============================================================================
+   EFFET HOVER - Agrandissement au survol (NON retournée)
+   ============================================================================ */
+/* Sélecteur complexe : .card:hover .card-inner:not(.flipped) */
+/* Signifie : quand on survole .card, stylise .card-inner SI elle n'a PAS la classe .flipped */
+/* En résumé : agrandit seulement les cartes face cachée (non retournées) */
+.card:hover .card-inner:not(.flipped) {
+  /* TRANSFORMATION - AGRANDISSEMENT */
+  /* scale(1.05) : agrandit l'élément de 5% (1 = taille normale, 1.05 = 105%) */
+  /* Crée un effet de "mise en avant" au survol */
+  /* Aide l'utilisateur à voir quelle carte il va cliquer */
+  transform: scale(1.05);
+  
+  /* ANIMATION RAPIDE */
+  /* transform : anime seulement la propriété transform */
+  /* 0.2s : animation très rapide (200 millisecondes) */
+  /* Plus rapide que l'animation flip (0.6s) pour une réaction immédiate */
+  transition: transform 0.2s;
+}
+
+/* ============================================================================
+   RESPONSIVE - Adaptation pour écrans mobiles
+   ============================================================================ */
+/* @media : règle conditionnelle (media query) */
+/* max-width: 768px : s'applique si largeur d'écran ≤ 768 pixels */
+/* Cible les téléphones et petites tablettes */
+@media (max-width: 768px) {
+  /* CARTE PLUS PETITE SUR MOBILE */
+  .card {
+    /* LARGEUR RÉDUITE */
+    /* 80px : au lieu de 100px sur grand écran */
+    /* Économise de l'espace sur petit écran */
+    /* Permet d'afficher la grille 4×4 confortablement */
+    width: 80px;
+    
+    /* HAUTEUR RÉDUITE */
+    /* 80px : garde le ratio carré (même que width) */
+    height: 80px;
+  }
+
+  /* ICÔNES ET EMOJIS PLUS PETITS */
+  /* Sélecteur multiple : applique aux deux classes */
+  .card-icon,
+  .card-value {
+    /* TAILLE DE POLICE RÉDUITE */
+    /* 2rem : au lieu de 3rem sur grand écran */
+    /* Proportionné à la taille réduite de la carte */
+    /* 2rem = 2 × 16px = 32px environ */
+    font-size: 2rem;
+  }
+}
+
+/* ============================================================================
+   RÉSUMÉ DU FONCTIONNEMENT DE L'ANIMATION FLIP
+   ============================================================================
+   
+   ÉTAT INITIAL (carte face cachée) :
+   - .card-inner : rotateY(0deg) = face avant visible
+   - .card-front : visible (? affiché)
+   - .card-back : rotateY(180deg) + backface-visibility: hidden = cachée derrière
+   
+   APRÈS CLIC (JavaScript ajoute classe .flipped) :
+   - .card-inner.flipped : rotateY(180deg) = tout pivote de 180°
+   - .card-front : maintenant à 180° = cachée (backface-visibility)
+   - .card-back : 180° + 180° = 360° (= 0°) = visible (emoji affiché)
+   
+   ANIMATION :
+   - Durée : 0.6s (transition sur .card-inner)
+   - Rotation fluide grâce à transform-style: preserve-3d
+   - Perspective de 1000px donne l'effet 3D réaliste
+   
+   SURVOL (hover) :
+   - Carte face cachée : agrandissement de 5% (scale 1.05)
+   - Carte retournée : pas d'effet (grâce à :not(.flipped))
+   
+   MOBILE :
+   - Cartes réduites à 80×80px
+   - Emojis/icônes réduits à 2rem
+   
+   ============================================================================ */

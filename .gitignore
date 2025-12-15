@@ -1,0 +1,157 @@
+# ============================================================================
+# FICHIER .gitignore
+# ============================================================================
+# Ce fichier indique à Git quels fichiers/dossiers NE PAS suivre (ignorer)
+# Git ne versionnera pas ces fichiers, ils resteront uniquement en local
+# Documentation officielle : https://help.github.com/articles/ignoring-files/
+# ============================================================================
+
+# ============================================================================
+# DÉPENDANCES (dependencies)
+# ============================================================================
+# Fichiers installés par npm ou yarn, à ne JAMAIS versionner
+
+# /node_modules : dossier contenant TOUTES les dépendances du projet
+# - Créé par la commande : npm install ou yarn install
+# - Peut contenir des milliers de fichiers (plusieurs centaines de Mo)
+# - Chaque développeur doit installer ses propres node_modules localement
+# - package.json et package-lock.json suffisent pour recréer ce dossier
+# - RAISON : trop volumineux, différent selon l'OS, recréable facilement
+/node_modules
+
+# /.pnp : dossier Plug'n'Play de Yarn 2+
+# - Système d'installation alternatif de Yarn (pas de node_modules)
+# - Fichiers binaires générés automatiquement
+# - Spécifique à chaque machine
+/.pnp
+
+# .pnp.js : fichier de résolution des modules pour Yarn PnP
+# - Contient la carte des dépendances en mode Plug'n'Play
+# - Généré automatiquement par Yarn 2+
+# - Doit être ignoré car recréable
+.pnp.js
+
+# ============================================================================
+# TESTS (testing)
+# ============================================================================
+# Fichiers générés lors de l'exécution des tests
+
+# /coverage : rapport de couverture de code des tests
+# - Créé par des outils comme Jest (--coverage)
+# - Contient des fichiers HTML/JSON montrant quelles lignes sont testées
+# - Fichiers générés automatiquement, pas besoin de les versionner
+# - Exemple : index.html avec pourcentages de couverture par fichier
+# - RAISON : fichiers de build, recréables à chaque test
+/coverage
+
+# ============================================================================
+# PRODUCTION (production)
+# ============================================================================
+# Fichiers compilés prêts pour le déploiement
+
+# /build : dossier de build de production
+# - Créé par la commande : npm run build
+# - Contient les fichiers React compilés, minifiés et optimisés
+# - HTML, CSS, JS compressés pour le déploiement en production
+# - Exemples : bundle.js, index.html, fichiers avec hash (main.abc123.js)
+# - RAISON : fichiers générés, très volumineux, recréables facilement
+# - Chaque build peut produire des noms de fichiers différents (hash)
+/build
+
+# ============================================================================
+# DIVERS (misc)
+# ============================================================================
+# Fichiers système et fichiers de configuration locaux
+
+# .DS_Store : fichier caché de macOS
+# - Créé automatiquement par le Finder sur Mac
+# - Stocke les préférences d'affichage des dossiers (icônes, position...)
+# - Spécifique à macOS, inutile sur Windows/Linux
+# - RAISON : pollution du dépôt, pas de valeur pour le projet
+.DS_Store
+
+# .env.local : variables d'environnement locales
+# - Fichier contenant des secrets ou config locales (clés API, mots de passe...)
+# - Exemple : REACT_APP_API_KEY=abc123, DATABASE_URL=localhost
+# - NE DOIT JAMAIS être versionné (secrets exposés publiquement !)
+# - RAISON : sécurité, chaque environnement a ses propres variables
+.env.local
+
+# .env.development.local : variables d'environnement pour développement local
+# - Similaire à .env.local mais spécifique à l'environnement "development"
+# - Écrase les valeurs de .env.development (si présent)
+# - Utilisé pour config personnelle de chaque développeur
+# - RAISON : sécurité et personnalisation par développeur
+.env.development.local
+
+# .env.test.local : variables d'environnement pour tests locaux
+# - Utilisé lors de l'exécution des tests (npm test)
+# - Permet de définir des variables spécifiques aux tests
+# - Exemple : REACT_APP_API_URL=http://localhost:4000 pour API de test
+# - RAISON : configuration locale de l'environnement de test
+.env.test.local
+
+# .env.production.local : variables d'environnement pour production locale
+# - Utilisé pour tester le build de production localement
+# - Contient des secrets de production (à ne JAMAIS versionner !)
+# - RAISON : sécurité critique, secrets de production exposés
+.env.production.local
+
+# ============================================================================
+# FICHIERS DE LOG (logs)
+# ============================================================================
+# Fichiers de débogage générés par npm ou yarn
+
+# npm-debug.log* : logs de débogage de npm
+# - Créé quand npm rencontre une erreur (npm install, npm start...)
+# - Contient la trace complète de l'erreur pour diagnostic
+# - L'astérisque (*) signifie : tous les fichiers commençant par "npm-debug.log"
+# - Exemples : npm-debug.log, npm-debug.log.1, npm-debug.log.2
+# - RAISON : fichiers temporaires, spécifiques à chaque erreur locale
+npm-debug.log*
+
+# yarn-debug.log* : logs de débogage de Yarn
+# - Équivalent de npm-debug.log pour Yarn
+# - Créé lors d'erreurs Yarn (yarn install, yarn start...)
+# - Contient des informations de diagnostic
+# - RAISON : fichiers temporaires de débogage local
+yarn-debug.log*
+
+# yarn-error.log* : logs d'erreurs de Yarn
+# - Créé quand Yarn rencontre une erreur critique
+# - Plus détaillé que yarn-debug.log
+# - Contient la stack trace complète
+# - RAISON : fichiers temporaires, pas utiles dans le dépôt
+yarn-error.log*
+
+# ============================================================================
+# RÉSUMÉ DES CATÉGORIES IGNORÉES
+# ============================================================================
+#
+# DÉPENDANCES (/node_modules, /.pnp, .pnp.js) :
+# - Fichiers installables via npm/yarn install
+# - Trop volumineux pour être versionnés
+#
+# TESTS (/coverage) :
+# - Rapports générés automatiquement
+# - Recréables à chaque exécution de tests
+#
+# PRODUCTION (/build) :
+# - Fichiers compilés et optimisés
+# - Générés par npm run build
+#
+# DIVERS (.DS_Store, .env.*) :
+# - Fichiers système (macOS)
+# - Variables d'environnement (secrets, configuration locale)
+#
+# LOGS (npm-debug.log*, yarn-*.log*) :
+# - Fichiers de débogage temporaires
+# - Spécifiques à chaque erreur locale
+#
+# POURQUOI .gitignore EST IMPORTANT :
+# - Évite de polluer le dépôt avec des fichiers inutiles
+# - Protège les secrets (clés API, mots de passe)
+# - Réduit la taille du dépôt Git
+# - Évite les conflits entre environnements (Windows/Mac/Linux)
+#
+# ============================================================================

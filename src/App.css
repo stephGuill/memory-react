@@ -1,0 +1,488 @@
+/* ============================================================================
+   STYLES PRINCIPAUX DE L'APPLICATION - App.css
+   ============================================================================
+   Ce fichier contient tous les styles du composant App (composant principal)
+   Inclut : layout général, statistiques, grille de cartes, message de victoire
+   ============================================================================ */
+
+/* ============================================================================
+   CONTENEUR PRINCIPAL DE L'APPLICATION (.App)
+   ============================================================================ */
+.App {
+  /* ALIGNEMENT DU TEXTE */
+  /* center : centre tout le texte horizontalement */
+  /* S'applique à tous les éléments textuels enfants */
+  text-align: center;
+  
+  /* HAUTEUR MINIMALE */
+  /* 100vh : 100% de la hauteur du viewport (fenêtre du navigateur) */
+  /* vh (viewport height) : unité relative à la hauteur de l'écran */
+  /* Garantit que l'application prend toute la hauteur de l'écran */
+  /* Même si le contenu est petit, l'arrière-plan couvre tout l'écran */
+  min-height: 100vh;
+  
+  /* DISPOSITION FLEXBOX */
+  /* flex : active le modèle de disposition flexible */
+  /* Permet un contrôle précis de l'alignement des éléments enfants */
+  display: flex;
+  
+  /* DIRECTION DE LA FLEXBOX */
+  /* column : empile les éléments verticalement (de haut en bas) */
+  /* Ordre : Title → game-info → cards-grid → victory-message → button */
+  flex-direction: column;
+  
+  /* ALIGNEMENT HORIZONTAL */
+  /* center : centre tous les éléments enfants horizontalement */
+  /* Fonctionne avec flex-direction: column */
+  align-items: center;
+  
+  /* ALIGNEMENT VERTICAL */
+  /* center : centre tous les éléments enfants verticalement */
+  /* Fonctionne avec min-height: 100vh pour centrer tout dans l'écran */
+  justify-content: center;
+  
+  /* ESPACEMENT INTERNE */
+  /* 20px : ajoute 20 pixels d'espace sur tous les côtés */
+  /* Empêche le contenu de toucher les bords de l'écran */
+  padding: 20px;
+}
+
+/* ============================================================================
+   SECTION INFORMATIONS DU JEU (.game-info)
+   ============================================================================ */
+/* Contient les statistiques : Coups, Temps, Paires */
+.game-info {
+  /* DISPOSITION FLEXBOX */
+  /* flex : active flexbox pour disposer les éléments côte à côte */
+  display: flex;
+  
+  /* ESPACEMENT ENTRE LES ÉLÉMENTS */
+  /* 30px : espace entre chaque info-item (Coups, Temps, Paires) */
+  /* gap est plus moderne que margin et gère automatiquement l'espacement */
+  gap: 30px;
+  
+  /* MARGE INFÉRIEURE */
+  /* 30px : espace entre les statistiques et la grille de cartes */
+  margin-bottom: 30px;
+  
+  /* ARRIÈRE-PLAN SEMI-TRANSPARENT */
+  /* rgba(255, 255, 255, 0.1) : blanc avec 10% d'opacité */
+  /* rgba : red, green, blue, alpha (transparence) */
+  /* (255, 255, 255) = blanc, 0.1 = très transparent */
+  /* Crée un effet de verre dépoli moderne (glassmorphism) */
+  background: rgba(255, 255, 255, 0.1);
+  
+  /* ESPACEMENT INTERNE */
+  /* 15px : espacement vertical (haut/bas) */
+  /* 30px : espacement horizontal (gauche/droite) */
+  /* Crée de l'air autour du contenu */
+  padding: 15px 30px;
+  
+  /* COINS ARRONDIS */
+  /* 15px : rayon de courbure des coins */
+  /* Donne un aspect moderne et doux */
+  border-radius: 15px;
+  
+  /* EFFET DE FLOU EN ARRIÈRE-PLAN */
+  /* blur(10px) : floute le fond derrière l'élément */
+  /* backdrop-filter : applique des effets visuels au contenu derrière */
+  /* Renforce l'effet glassmorphism (verre dépoli) */
+  /* Note : non supporté par tous les navigateurs (principalement modernes) */
+  backdrop-filter: blur(10px);
+  
+  /* OMBRE PORTÉE */
+  /* 0 : pas de décalage horizontal */
+  /* 4px : décalage vertical (ombre en dessous) */
+  /* 15px : flou de l'ombre */
+  /* rgba(0, 0, 0, 0.2) : noir avec 20% d'opacité */
+  /* Donne de la profondeur et détache l'élément du fond */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================================================
+   ÉLÉMENT INDIVIDUEL D'INFORMATION (.info-item)
+   ============================================================================ */
+/* Un des trois blocs : Coups, Temps, ou Paires */
+.info-item {
+  /* DISPOSITION FLEXBOX */
+  /* flex : active flexbox pour disposer label et valeur */
+  display: flex;
+  
+  /* DIRECTION EN COLONNE */
+  /* column : empile verticalement (label au-dessus, valeur en dessous) */
+  flex-direction: column;
+  
+  /* ALIGNEMENT HORIZONTAL */
+  /* center : centre le label et la valeur horizontalement */
+  align-items: center;
+  
+  /* ESPACEMENT ENTRE LABEL ET VALEUR */
+  /* 5px : petit espace entre "Coups:" et "0" */
+  gap: 5px;
+}
+
+/* ============================================================================
+   LABEL DES INFORMATIONS (.info-label)
+   ============================================================================ */
+/* Texte "Coups:", "Temps:", "Paires:" */
+.info-label {
+  /* TAILLE DE LA POLICE */
+  /* 0.9rem : légèrement plus petit que la taille de base (0.9 × 16px = 14.4px) */
+  /* Plus petit que la valeur pour hiérarchie visuelle */
+  font-size: 0.9rem;
+  
+  /* COULEUR DU TEXTE */
+  /* rgba(255, 255, 255, 0.8) : blanc avec 80% d'opacité */
+  /* Légèrement transparent pour le rendre moins dominant que la valeur */
+  color: rgba(255, 255, 255, 0.8);
+  
+  /* TRANSFORMATION EN MAJUSCULES */
+  /* uppercase : "Coups:" devient "COUPS:" */
+  /* Donne un aspect plus formel et structuré */
+  text-transform: uppercase;
+  
+  /* ESPACEMENT ENTRE LES LETTRES */
+  /* 1px : ajoute un peu d'espace entre chaque lettre */
+  /* Améliore la lisibilité des textes en majuscules */
+  letter-spacing: 1px;
+}
+
+/* ============================================================================
+   VALEUR DES INFORMATIONS (.info-value)
+   ============================================================================ */
+/* Chiffres "0", "00:00", "0/8" */
+.info-value {
+  /* TAILLE DE LA POLICE */
+  /* 1.5rem : grande taille (1.5 × 16px = 24px) */
+  /* Plus grand que le label pour attirer l'attention */
+  font-size: 1.5rem;
+  
+  /* ÉPAISSEUR DE LA POLICE */
+  /* bold : texte en gras pour le rendre plus visible */
+  font-weight: bold;
+  
+  /* COULEUR DU TEXTE */
+  /* #ffffff : blanc pur (opacité 100%, contrairement au label) */
+  /* Plus visible et plus important visuellement que le label */
+  color: #ffffff;
+}
+
+/* ============================================================================
+   GRILLE DE CARTES (.cards-grid)
+   ============================================================================ */
+/* Contient les 16 cartes du jeu disposées en grille 4×4 */
+.cards-grid {
+  /* DISPOSITION EN GRILLE CSS */
+  /* grid : active le modèle de disposition en grille */
+  /* Plus puissant que flexbox pour les layouts en 2D (lignes et colonnes) */
+  display: grid;
+  
+  /* COLONNES DE LA GRILLE */
+  /* grid-template-columns : définit le nombre et la taille des colonnes */
+  /* repeat(4, 1fr) : crée 4 colonnes de taille égale */
+  /* 4 : nombre de colonnes */
+  /* 1fr : fraction (chaque colonne prend 1 part de l'espace disponible) */
+  /* fr (fraction) : unité flexible qui partage l'espace équitablement */
+  /* Résultat : 4 colonnes de largeur égale (grille 4×4) */
+  grid-template-columns: repeat(4, 1fr);
+  
+  /* ESPACEMENT ENTRE LES CARTES */
+  /* 15px : espace entre chaque carte (horizontalement et verticalement) */
+  /* gap gère automatiquement l'espacement sans marges compliquées */
+  gap: 15px;
+  
+  /* MARGE INFÉRIEURE */
+  /* 30px : espace entre la grille et le message de victoire ou le bouton */
+  margin-bottom: 30px;
+  
+  /* ESPACEMENT INTERNE */
+  /* 20px : espace entre le bord de la grille et les cartes */
+  /* Crée un "cadre" autour des cartes */
+  padding: 20px;
+  
+  /* ARRIÈRE-PLAN SEMI-TRANSPARENT */
+  /* rgba(255, 255, 255, 0.1) : blanc avec 10% d'opacité */
+  /* Même effet glassmorphism que les statistiques */
+  background: rgba(255, 255, 255, 0.1);
+  
+  /* COINS ARRONDIS */
+  /* 20px : rayon de courbure plus prononcé que les statistiques (15px) */
+  /* Donne un aspect doux et moderne */
+  border-radius: 20px;
+  
+  /* EFFET DE FLOU EN ARRIÈRE-PLAN */
+  /* blur(10px) : floute le contenu derrière la grille */
+  /* Renforce l'effet de verre dépoli */
+  backdrop-filter: blur(10px);
+  
+  /* OMBRE PORTÉE PLUS PRONONCÉE */
+  /* 0 : pas de décalage horizontal */
+  /* 8px : décalage vertical (plus grand que les stats : 4px) */
+  /* 32px : flou important (plus diffus que les stats : 15px) */
+  /* rgba(0, 0, 0, 0.2) : noir avec 20% d'opacité */
+  /* Ombre plus forte car la grille est l'élément principal du jeu */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
+}
+
+/* ============================================================================
+   MESSAGE DE VICTOIRE (.victory-message)
+   ============================================================================ */
+/* Affiché quand toutes les paires sont trouvées */
+.victory-message {
+  /* ARRIÈRE-PLAN DÉGRADÉ */
+  /* linear-gradient : dégradé linéaire de couleurs */
+  /* 135deg : angle diagonal (haut-gauche vers bas-droite) */
+  /* #f093fb 0% : rose clair au début */
+  /* #f5576c 100% : rose foncé à la fin */
+  /* Mêmes couleurs que le bouton pour cohérence visuelle */
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  
+  /* COULEUR DU TEXTE */
+  /* white : blanc (ou #ffffff) */
+  /* Contraste bien avec le fond rose */
+  color: white;
+  
+  /* ESPACEMENT INTERNE */
+  /* 30px : espace généreux autour du texte (tous les côtés) */
+  /* Donne de l'air au message pour le rendre plus visible */
+  padding: 30px;
+  
+  /* COINS ARRONDIS */
+  /* 20px : même rayon que la grille de cartes pour cohérence */
+  border-radius: 20px;
+  
+  /* MARGE INFÉRIEURE */
+  /* 20px : espace entre le message et le bouton "Nouvelle Partie" */
+  margin-bottom: 20px;
+  
+  /* OMBRE PORTÉE IMPORTANTE */
+  /* 0 : pas de décalage horizontal */
+  /* 8px : décalage vertical */
+  /* 32px : flou très diffus */
+  /* rgba(0, 0, 0, 0.3) : noir avec 30% d'opacité (plus sombre que les autres) */
+  /* Ombre forte pour faire ressortir ce message important */
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  
+  /* ANIMATION D'APPARITION */
+  /* bounceIn : nom de l'animation (définie par @keyframes plus bas) */
+  /* 0.6s : durée de l'animation (600 millisecondes) */
+  /* ease-in-out : courbe d'accélération douce */
+  /* L'animation se joue quand le message apparaît (victoire) */
+  animation: bounceIn 0.6s ease-in-out;
+}
+
+/* ============================================================================
+   TITRE DU MESSAGE DE VICTOIRE (.victory-message h2)
+   ============================================================================ */
+/* "🎉 Félicitations ! 🎉" */
+.victory-message h2 {
+  /* TAILLE DE LA POLICE */
+  /* 2.5rem : grande taille (2.5 × 16px = 40px) */
+  /* Titre imposant pour célébrer la victoire */
+  font-size: 2.5rem;
+  
+  /* MARGE INFÉRIEURE */
+  /* 10px : petit espace entre le titre et le paragraphe */
+  margin-bottom: 10px;
+}
+
+/* ============================================================================
+   PARAGRAPHE DU MESSAGE DE VICTOIRE (.victory-message p)
+   ============================================================================ */
+/* "Vous avez gagné en X coups et XX:XX !" */
+.victory-message p {
+  /* TAILLE DE LA POLICE */
+  /* 1.2rem : taille légèrement plus grande que normale (1.2 × 16px = 19.2px) */
+  /* Plus petit que le titre pour hiérarchie visuelle */
+  font-size: 1.2rem;
+}
+
+/* ============================================================================
+   ANIMATION bounceIn - Apparition avec rebond
+   ============================================================================ */
+/* Crée un effet de "pop" quand le message apparaît */
+@keyframes bounceIn {
+  /* DÉBUT DE L'ANIMATION (0%) */
+  0% {
+    /* ÉCHELLE INITIALE */
+    /* scale(0) : taille 0 (complètement réduit, invisible) */
+    /* Le message commence minuscule */
+    transform: scale(0);
+    
+    /* OPACITÉ INITIALE */
+    /* opacity: 0 : complètement transparent/invisible */
+    opacity: 0;
+  }
+  
+  /* MILIEU DE L'ANIMATION (50%) */
+  /* Point de rebond : le message "dépasse" sa taille finale */
+  50% {
+    /* ÉCHELLE AGRANDIE */
+    /* scale(1.1) : 110% de la taille normale */
+    /* Le message devient plus grand que sa taille finale (effet rebond) */
+    transform: scale(1.1);
+    
+    /* Note : opacity devient automatiquement 1 grâce à l'interpolation */
+  }
+  
+  /* FIN DE L'ANIMATION (100%) */
+  100% {
+    /* ÉCHELLE FINALE */
+    /* scale(1) : taille normale (100%) */
+    /* Le message revient à sa taille définitive après le rebond */
+    transform: scale(1);
+    
+    /* OPACITÉ FINALE */
+    /* opacity: 1 : complètement opaque/visible */
+    opacity: 1;
+  }
+}
+
+/* ============================================================================
+   RÉSUMÉ DE L'ANIMATION bounceIn
+   ============================================================================
+   
+   Étapes :
+   1. (0%) : Message invisible et minuscule (scale: 0, opacity: 0)
+   2. (0% → 50%) : Grandit rapidement et devient visible
+   3. (50%) : Dépasse sa taille finale de 10% (scale: 1.1) - effet rebond
+   4. (50% → 100%) : Revient à sa taille normale (scale: 1)
+   
+   Effet visuel : Le message "explose" sur l'écran avec un petit rebond
+   Durée totale : 0.6 seconde
+   ============================================================================ */
+
+/* ============================================================================
+   CONTENEUR DU BOUTON (.button-container)
+   ============================================================================ */
+/* Contient le bouton "Nouvelle Partie" */
+.button-container {
+  /* DISPOSITION FLEXBOX */
+  /* flex : active flexbox pour positionner le bouton */
+  display: flex;
+  
+  /* ALIGNEMENT HORIZONTAL */
+  /* center : centre le bouton horizontalement */
+  justify-content: center;
+  
+  /* ESPACEMENT (pour plusieurs boutons futurs) */
+  /* 15px : espace entre les boutons si on en ajoute plusieurs */
+  /* Actuellement un seul bouton, mais préparé pour l'extensibilité */
+  gap: 15px;
+}
+
+/* ============================================================================
+   RESPONSIVE - TABLETTES ET SMARTPHONES (≤ 768px)
+   ============================================================================ */
+/* @media : règle CSS conditionnelle (media query) */
+/* max-width: 768px : s'applique si largeur d'écran ≤ 768 pixels */
+/* Cible : tablettes en mode portrait et smartphones en mode paysage */
+@media (max-width: 768px) {
+  
+  /* ADAPTATION DE LA GRILLE DE CARTES */
+  .cards-grid {
+    /* COLONNES MAINTENUES */
+    /* repeat(4, 1fr) : garde 4 colonnes (grille 4×4 conservée) */
+    /* Permet de garder toutes les cartes visibles sans scroll horizontal */
+    grid-template-columns: repeat(4, 1fr);
+    
+    /* ESPACEMENT RÉDUIT */
+    /* 10px : au lieu de 15px sur grand écran */
+    /* Économise de l'espace pour que les cartes tiennent mieux */
+    gap: 10px;
+    
+    /* PADDING RÉDUIT */
+    /* 15px : au lieu de 20px sur grand écran */
+    /* Optimise l'espace disponible sur petit écran */
+    padding: 15px;
+  }
+
+  /* ADAPTATION DES STATISTIQUES */
+  .game-info {
+    /* DIRECTION CHANGÉE EN COLONNE */
+    /* column : empile les statistiques verticalement au lieu d'horizontalement */
+    /* Les blocs Coups, Temps, Paires s'affichent les uns sous les autres */
+    /* Évite que les stats soient trop serrées horizontalement */
+    flex-direction: column;
+    
+    /* ESPACEMENT RÉDUIT */
+    /* 15px : au lieu de 30px sur grand écran */
+    /* Espacement vertical entre chaque stat */
+    gap: 15px;
+    
+    /* PADDING RÉDUIT */
+    /* 15px : au lieu de 15px 30px (vertical horizontal) */
+    /* Applique le même padding sur tous les côtés */
+    padding: 15px;
+  }
+
+  /* ADAPTATION DU TITRE DE VICTOIRE */
+  .victory-message h2 {
+    /* TAILLE RÉDUITE */
+    /* 1.8rem : au lieu de 2.5rem sur grand écran */
+    /* 1.8rem = 1.8 × 16px = 28.8px (au lieu de 40px) */
+    /* Évite que le titre soit trop grand sur petit écran */
+    font-size: 1.8rem;
+  }
+
+  /* ADAPTATION DU PARAGRAPHE DE VICTOIRE */
+  .victory-message p {
+    /* TAILLE RÉDUITE */
+    /* 1rem : au lieu de 1.2rem sur grand écran */
+    /* 1rem = 16px (taille de base) */
+    font-size: 1rem;
+  }
+}
+
+/* ============================================================================
+   RESPONSIVE - PETITS SMARTPHONES (≤ 480px)
+   ============================================================================ */
+/* @media : media query pour très petits écrans */
+/* max-width: 480px : s'applique si largeur d'écran ≤ 480 pixels */
+/* Cible : petits smartphones en mode portrait */
+@media (max-width: 480px) {
+  
+  /* ADAPTATION EXTRÊME DE LA GRILLE */
+  .cards-grid {
+    /* COLONNES CONSERVÉES */
+    /* repeat(4, 1fr) : garde toujours 4 colonnes */
+    /* Même sur très petit écran, on garde la grille 4×4 */
+    /* Les cartes seront simplement plus petites (80px → défini dans Card.css) */
+    grid-template-columns: repeat(4, 1fr);
+    
+    /* ESPACEMENT MINIMAL */
+    /* 8px : au lieu de 10px (tablette) ou 15px (desktop) */
+    /* Espacement minimal pour maximiser l'espace des cartes */
+    gap: 8px;
+  }
+  
+  /* NOTE : Les autres styles (padding, tailles de texte) héritent du media query précédent (768px) */
+  /* Seul l'espacement de la grille est encore réduit ici */
+}
+
+/* ============================================================================
+   RÉSUMÉ DES BREAKPOINTS RESPONSIVE
+   ============================================================================
+   
+   GRAND ÉCRAN (> 768px) :
+   - Grille : 4 colonnes, gap 15px, padding 20px
+   - Stats : disposition horizontale, gap 30px
+   - Titre victoire : 2.5rem (40px)
+   - Texte victoire : 1.2rem (19.2px)
+   
+   TABLETTE / SMARTPHONE (≤ 768px) :
+   - Grille : 4 colonnes, gap 10px, padding 15px
+   - Stats : disposition VERTICALE, gap 15px
+   - Titre victoire : 1.8rem (28.8px)
+   - Texte victoire : 1rem (16px)
+   
+   PETIT SMARTPHONE (≤ 480px) :
+   - Grille : gap encore réduit à 8px (minimal)
+   - Autres styles : hérités du breakpoint 768px
+   
+   LOGIQUE :
+   - On garde toujours la grille 4×4 (jamais 3×3 ou 2×2)
+   - On réduit progressivement les espacements et tailles de texte
+   - Les cartes s'adaptent via leur propre CSS (Card.css : 100px → 80px)
+   
+   ============================================================================ */

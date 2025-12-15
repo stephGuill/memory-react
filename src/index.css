@@ -1,0 +1,177 @@
+/* ============================================================================
+   STYLES GLOBAUX - index.css
+   ============================================================================
+   Ce fichier contient les styles de base appliqués à TOUTE l'application
+   Il est importé dans index.js et s'applique avant tous les autres CSS
+   ============================================================================ */
+
+/* ============================================================================
+   RESET CSS UNIVERSEL (*)
+   ============================================================================ */
+/* Sélecteur universel (*) : s'applique à TOUS les éléments HTML */
+/* Ce reset CSS normalise les styles par défaut des navigateurs */
+* {
+  /* SUPPRESSION DES MARGES EXTERNES */
+  /* margin: 0 : supprime toutes les marges par défaut */
+  /* Les navigateurs ajoutent des marges différentes selon les éléments */
+  /* (ex: <h1> a une marge par défaut, <p> aussi, etc.) */
+  /* Cette règle uniformise tout à 0 pour un contrôle total */
+  margin: 0;
+  
+  /* SUPPRESSION DES ESPACEMENTS INTERNES */
+  /* padding: 0 : supprime tous les paddings par défaut */
+  /* Certains éléments comme <ul>, <ol> ont un padding par défaut */
+  /* On repart de zéro pour contrôler précisément chaque espacement */
+  padding: 0;
+  
+  /* MODÈLE DE BOÎTE COHÉRENT */
+  /* box-sizing: border-box : change le calcul de la taille des éléments */
+  /* Par défaut : width = contenu seulement (padding et border s'ajoutent) */
+  /* Avec border-box : width = contenu + padding + border (plus intuitif) */
+  /* Exemple : si width: 100px et padding: 10px */
+  /*   - Sans border-box : largeur totale = 120px (100 + 10 + 10) */
+  /*   - Avec border-box : largeur totale = 100px (padding inclus) */
+  /* Facilite grandement le calcul des dimensions */
+  box-sizing: border-box;
+}
+
+/* ============================================================================
+   STYLES DU BODY (corps de la page)
+   ============================================================================ */
+/* Le <body> est l'élément racine visible qui contient tout le contenu */
+body {
+  /* MARGE EXTERNE */
+  /* margin: 0 : supprime la marge par défaut du body */
+  /* Les navigateurs ajoutent souvent une marge de 8px autour du body */
+  /* On la supprime pour que notre contenu touche les bords de l'écran */
+  margin: 0;
+  
+  /* FAMILLE DE POLICES (font-family) */
+  /* Liste de polices en ordre de priorité (fallback) */
+  /* Le navigateur utilise la première police disponible dans la liste */
+  
+  /* -apple-system : police système d'Apple (macOS, iOS) */
+  /*   - macOS Monterey+ : "SF Pro Text" */
+  /*   - iOS : "San Francisco" */
+  
+  /* BlinkMacSystemFont : ancienne syntaxe pour polices système Apple */
+  /*   - Fallback pour anciennes versions de macOS */
+  
+  /* 'Segoe UI' : police système de Windows 10/11 */
+  /*   - Style moderne et lisible de Microsoft */
+  
+  /* 'Roboto' : police de Google, utilisée sur Android */
+  /*   - Police par défaut de Material Design */
+  
+  /* 'Oxygen' : police système de KDE (Linux) */
+  
+  /* 'Ubuntu' : police du système d'exploitation Ubuntu (Linux) */
+  
+  /* 'Cantarell' : police de GNOME (Linux) */
+  
+  /* 'Fira Sans' : police open source de Mozilla */
+  
+  /* 'Droid Sans' : ancienne police Android */
+  
+  /* 'Helvetica Neue' : police classique sur macOS plus anciens */
+  
+  /* sans-serif : police générique sans empattement (dernier recours) */
+  /*   - Si aucune police ci-dessus n'est disponible */
+  /*   - Le navigateur choisit sa police sans-serif par défaut */
+  
+  /* AVANTAGE : Chaque utilisateur voit la police native de son système */
+  /* Résultat : meilleure performance et cohérence avec l'OS */
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  
+  /* LISSAGE DE POLICE - WEBKIT (Safari, Chrome sur Mac) */
+  /* antialiased : active le lissage anticrénelage des polices */
+  /* Rend le texte plus net et plus fin sur les écrans Mac */
+  /* -webkit- : préfixe pour les navigateurs basés sur WebKit */
+  /* Améliore la lisibilité sur macOS et iOS */
+  -webkit-font-smoothing: antialiased;
+  
+  /* LISSAGE DE POLICE - FIREFOX SUR MAC */
+  /* grayscale : utilise le lissage en niveaux de gris */
+  /* -moz- : préfixe pour Firefox (Mozilla) */
+  /* Équivalent de -webkit-font-smoothing pour Firefox */
+  /* Rend le texte cohérent entre Chrome et Firefox sur Mac */
+  -moz-osx-font-smoothing: grayscale;
+  
+  /* ARRIÈRE-PLAN DÉGRADÉ */
+  /* linear-gradient : crée un dégradé de couleurs */
+  /* 135deg : angle du dégradé (135° = diagonal de haut-gauche à bas-droite) */
+  /*   - 0° = bas vers haut */
+  /*   - 90° = gauche vers droite */
+  /*   - 135° = diagonale élégante */
+  /* #667eea 0% : bleu-violet clair au début (position 0%) */
+  /*   - RGB : (102, 126, 234) */
+  /* #764ba2 100% : violet foncé à la fin (position 100%) */
+  /*   - RGB : (118, 75, 162) */
+  /* Ce dégradé violet donne un style moderne et élégant à toute l'application */
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  
+  /* HAUTEUR MINIMALE */
+  /* 100vh : 100% de la hauteur du viewport (fenêtre du navigateur) */
+  /* vh (viewport height) : unité CSS relative à la hauteur de l'écran */
+  /* Garantit que le dégradé couvre TOUJOURS tout l'écran */
+  /* Même si le contenu est petit, le fond reste visible partout */
+  /* Important pour éviter un fond blanc en bas sur petits contenus */
+  min-height: 100vh;
+}
+
+/* ============================================================================
+   STYLES POUR LES BLOCS DE CODE (<code>)
+   ============================================================================ */
+/* L'élément <code> est utilisé pour afficher du code inline ou des extraits */
+/* Note : Pas utilisé dans notre jeu Memory, mais inclus par défaut par Create React App */
+code {
+  /* FAMILLE DE POLICES MONOSPACE */
+  /* Polices à chasse fixe : chaque caractère a la même largeur */
+  /* Idéal pour afficher du code (alignement, lisibilité) */
+  
+  /* source-code-pro : police monospace moderne de Adobe */
+  /*   - Optimisée pour le code */
+  
+  /* Menlo : police monospace de macOS */
+  /*   - Utilisée dans Terminal et Xcode */
+  
+  /* Monaco : ancienne police monospace de macOS */
+  
+  /* Consolas : police monospace de Windows */
+  /*   - Utilisée dans Visual Studio */
+  
+  /* 'Courier New' : police monospace classique */
+  /*   - Disponible partout (fallback universel) */
+  
+  /* monospace : police générique monospace (dernier recours) */
+  /*   - Le navigateur choisit sa police monospace par défaut */
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
+}
+
+/* ============================================================================
+   RÉSUMÉ DES STYLES GLOBAUX
+   ============================================================================
+   
+   RESET UNIVERSEL (*) :
+   - Supprime toutes les marges et paddings par défaut
+   - Utilise box-sizing: border-box pour des calculs de taille intuitifs
+   
+   BODY :
+   - Fond dégradé violet (#667eea → #764ba2) sur toute la hauteur
+   - Police système native pour chaque OS (SF Pro, Segoe UI, Roboto...)
+   - Lissage de police activé pour une meilleure lisibilité
+   - Hauteur minimale de 100vh pour couvrir tout l'écran
+   
+   CODE :
+   - Police monospace pour afficher du code (non utilisé dans ce projet)
+   
+   POURQUOI CE FICHIER EST IMPORTANT :
+   - S'applique à TOUTE l'application (global)
+   - Crée une base cohérente pour tous les composants
+   - Le dégradé violet est le fond principal de notre jeu Memory
+   - Le reset CSS évite les incohérences entre navigateurs
+   
+   ============================================================================ */
